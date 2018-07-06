@@ -1,0 +1,9 @@
+network,AK
+station,BCP
+location,--
+channel,BHZ
+start_time,2013-01-01T00:00:00
+end_time,2014-02-01T00:00:00
+time_interval,7200
+metadata,ak_bcp.dataless
+fft_window,1024

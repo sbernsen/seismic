@@ -1,0 +1,17 @@
+#!/bin/bash 
+
+# remove the instrument response from a seismogram. The metadata file needs to be in the same directory 
+df=`ls *.SAC` 
+
+sac << FEOF 
+
+r $df 
+rmean 
+rtr 
+transfer from evalresp to none freq 0.008 0.016 12.5 25
+
+w $df 
+
+exit
+
+FEOF
