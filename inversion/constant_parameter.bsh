@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Routine for editing specific columns for a constant value in a model textfile
+# used by Computer Programs in Seismology. 
+#
+
+# Make sure there are 2 input args and the first one is an integer
+
+
+# Define some file names as variables
+tmp1=tmp1.txt
+tmp=tmp.txt
+hdr=header.txt
+mod=model.out
+upd=model.txt
+
+
+# Read the second line of the sobs.d file to get the input model file
+modinit=`sed '3q;d' sobs.d`
+
+# The current iteration model is in the file model.out. We need to read the 
+# lines 12 and over as well as get the header
+sed '1,12d' $mod >> $tmp1	#this excludes the column header
+sed '12q' $mod >> $hdr 	#this includes the column header
+
+# Set the parameter in the specified column
+awk '$4="0.9"' $tmp1 > $tmp
+
+cat $hdr $tmp > $upd
+
+# clean it up
+rm $tmp1
+rm $tmp
+rm $hdr

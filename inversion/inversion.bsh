@@ -1,0 +1,50 @@
+#!/bin/sh
+
+## This code was adopted and modified from the CPS user manual
+
+
+#  0- Display menu                        24- ASCII Q Resolving  (file name,lam)
+#  1- Get  Dispersion                     27- ASCII Veloc Dispersion (file name)
+#  2- Invert Dispersion Data              28- ASCII Model File  (file name, lam)
+#  3- Invert Gamma Data                   29- ASCII Vel Resolving(file name,lam)
+#  4- Simultaneous Gamma/Disp  Inversion  30- (0) Fix Vp,(1) Fix Vp/Vs
+#  5- Set Thick(0)/Velocity(1) Inversion  31- Change dd(i), enter i,dd(i)
+#  6- Update Model (need lam)             32- Enter Damping Factor (lam)
+#  7- Plot RFTN/Dispersion/Velocity Model 35- Inversion: (0) Non-Causal (default)
+#  8- Plot Gamma / Qb inverse  Model                     (1) Decoupled Causal
+#  9- Plot Resolution Kernel                             (2) Coupled Causal
+# 10- List Singular Values                36- Smoothing: (0) Global reset none
+# 11- Gamma Data Partial Derivatives                     (1) Global reset diff
+# 12- Gamma Data Dispersion               37- Reset Number of Iterations
+# 13- List Q Model (need lam)             38- Temporary End
+# 14- Q(beta) Resolving Kernel (need lam) 39- Permanent End
+# 16- Velocity Data Partial Derivatives   40- Enter Sigv minimum
+# 17- Velocity Data Dispersion            41- Enter Sigg minimum
+# 18- List Velocity Model (need lam)      45- Show Velocity Weights
+# 19- Velocity Resolving Kernels(need lam)46- Show Qinv     Weights
+# 22- ASCII Gamma Dispersion (file name)  47- Show Inversion Controls
+# 23- ASCII Q(beta) File (file name,lam)  48- Modify Individual Layer Smoothing
+
+mod_name=icemodel2.txt.csv
+
+cp $mod_name model.txt
+
+surf96 39 # Clean up
+surf96 36 0 #
+surf96 32 $1 # Define damping
+
+for value in {1..1000}
+do
+	# Run an inversion step
+	surf96 1 2 6
+
+	# save current model
+	surf96 28 model.out
+	
+	# Constrain the density
+	bash constant_parameter.bsh 4 0.9
+
+done
+
+
+

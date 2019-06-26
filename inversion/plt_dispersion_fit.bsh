@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+#####
+#	plot the model and show the data fit after 5 iterations
+#####
+srfphv96
+plotnps -EPS -K -F7 -W10 < SRFPHV96.PLT > $1
+
+
+#shwmod96 -K 1 -W 0.05 model.true
+#mv SHWMOD96.PLT T.PLT
+#shwmod96 -K -1 tmpmod96.???
+#mv SHWMOD96.PLT I.PLT
+#cat T.PLT I.PLT > IT.PLT
+#plotnps -EPS -K -F7 -W10 < IT.PLT > figsrf2.eps

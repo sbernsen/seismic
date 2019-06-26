@@ -1,0 +1,8 @@
+#!/bin/sh
+ 
+# Data file = T2.10GA.S1.00.SAC
+# alpha =     50.000
+ 
+sdpegn96 -X0  5.10 -Y0  1.50 -XLEN  4.00 -YLEN  4.00 -XMIN  0.500E-02 -XMAX  0.100     -YMIN  0.40 -YMAX  4.00 -PER  -R -U -NOBOX -XLOG -YLIN 
+ 
+sacspc96 -X0  1.30 -Y0  1.50 -XLEN  3.00 -YLEN  4.00 -XMIN  0.224E-02 -XMAX  0.224     -YMIN  0.100E-02 -YMAX   1.00 -PER   -NOBOX -XLOG -YLOG -f T2.10GA.S1.00.SAC

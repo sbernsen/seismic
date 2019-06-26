@@ -1,6 +1,6 @@
+#### Modules using R ####
 
+## Plotting functions ##  
 
-Optional values for the headerconf.py file are:
-	geophone_x
-	geophone_y
-	
+R makes nice plots easily so I've compiled some functions to plot a set of traces or images. These functions will become more generalized in the future.
+
